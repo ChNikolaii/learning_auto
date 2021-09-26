@@ -5,3 +5,9 @@ mainClassName = "MyFirstProgram"
 dependencies {
     implementation 'org.jetbrains:annotations:20.1.0'
 }
+repositories {
+    mavenCentral()
+}
+dependencies {
+    compile 'org.testng:testng:7.4.0'
+}
