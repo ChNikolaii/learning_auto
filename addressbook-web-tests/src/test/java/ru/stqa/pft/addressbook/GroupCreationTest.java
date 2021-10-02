@@ -59,7 +59,12 @@ public class GroupCreationTest {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() throws Exception {
+        logOut();
         wd.quit();
+    }
+
+    private void logOut() {
+        wd.findElement(By.linkText("Logout")).click();
     }
 
     private boolean isElementPresent(By by) {
