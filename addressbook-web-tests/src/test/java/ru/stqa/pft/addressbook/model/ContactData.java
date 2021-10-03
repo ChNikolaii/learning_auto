@@ -1,17 +1,17 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-    private final String firstname;
-    private final String middlename;
-    private final String lastname;
-    private final String nickname;
-    private final String title;
-    private final String company;
-    private final String address;
-    private final String home;
-    private final String mobile;
-    private final String work;
-    private final String fax;
+    public final String firstname;
+    public final String middlename;
+    public final String lastname;
+    public final String nickname;
+    public final String title;
+    public final String company;
+    public final String address;
+    public final String home;
+    public final String mobile;
+    public final String work;
+    public final String fax;
 
     public ContactData(String firstname, String middlename, String lastname, String nickname, String title, String company, String address, String home, String mobile, String work, String fax) {
         this.firstname = firstname;

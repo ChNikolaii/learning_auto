@@ -5,7 +5,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
-    private FirefoxDriver wd;
+    public FirefoxDriver wd;
 
     public ContactHelper(FirefoxDriver wd) {
 
@@ -30,7 +30,6 @@ public class ContactHelper extends HelperBase {
         type(By.name("title"), contactData.getTitle());
         type(By.name("company"), contactData.getCompany());
         type(By.name("address"), contactData.getAddress());
-        click(By.name("theform"));
         type(By.name("home"), contactData.getHome());
         type(By.name("mobile"), contactData.getMobile());
         type(By.name("work"), contactData.getWork());
@@ -40,5 +39,22 @@ public class ContactHelper extends HelperBase {
 
     public void initNewContact() {
         click(By.linkText("add new"));
+    }
+
+    public void selectContact() {
+        click(By.name("selected[]"));
+    }
+
+    public void deletedContact() {
+        click(By.xpath("//form[2]/input[2]"));
+    }
+
+
+    public void initContactMofid() {
+        click(By.xpath("//img[@alt='Edit']"));
+    }
+
+    public void submitContactModif() {
+        click(By.xpath("//input[22]"));
     }
 }
