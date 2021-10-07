@@ -1,11 +1,12 @@
 package ru.stqa.pft.addressbook.appmanager;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+
 public class ContactHelper extends HelperBase {
-    public FirefoxDriver wd;
 
     public ContactHelper(FirefoxDriver wd) {
 
@@ -18,7 +19,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void submitContactCreation() {
-      click(By.name("submit"));
+        click(By.name("submit"));
     }
 
 
@@ -42,11 +43,11 @@ public class ContactHelper extends HelperBase {
     }
 
     public void selectContact() {
-        click(By.name("selected[]"));
+        click(By.xpath("//td/input"));
     }
 
     public void deletedContact() {
-        click(By.xpath("//form[2]/input[2]"));
+        click(By.xpath("//input[@value='Delete']"));
     }
 
 
@@ -57,4 +58,11 @@ public class ContactHelper extends HelperBase {
     public void submitContactModif() {
         click(By.xpath("//input[22]"));
     }
+
+    public void acceptAlert() {
+
+        wd.switchTo().alert().accept();
+
+    }
+
 }

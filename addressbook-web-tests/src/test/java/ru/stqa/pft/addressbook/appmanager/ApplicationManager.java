@@ -25,16 +25,16 @@ public class ApplicationManager {
         sessionHelper.login("admin", "secret");
     }
 
-
+    public void logOut() {
+        wd.findElement(By.linkText("Logout")).click();
+    }
 
     public void stop() {
         logOut();
         wd.quit();
     }
 
-    public void logOut() {
-        wd.findElement(By.linkText("Logout")).click();
-    }
+
 
     public boolean isElementPresent(By by) {
         try {
