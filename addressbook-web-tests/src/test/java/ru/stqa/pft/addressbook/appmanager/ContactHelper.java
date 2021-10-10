@@ -66,4 +66,14 @@ public class ContactHelper extends HelperBase {
 
     }
 
+    public void creatContact(ContactData contact) {
+        initNewContact();
+        fillContactForm(new ContactData("Kolya", "Sergeevich", "Cherentaev", "nikolaii", "hello", "world", "Balakhna city", "16", "123456", "qa", "123-456"));
+        submitContactCreation();
+        returnHomePage();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.xpath("//td/input"));
+    }
 }

@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.GroupData;
@@ -44,4 +45,16 @@ public class GroupHelper extends HelperBase {
     public void submitGroupModif() {
         click(By.name("update"));
     }
+
+    public void creatGroup(GroupData group) {
+        initGroupCreation();
+        fillGroupForm(new GroupData("test2", "test3", "test4"));
+        submitGroupCreation();
+        returnGroupPage();
+    }
+
+    public boolean isThereAGroup() {
+        return isElementPresent(By.name("selected[]"));
+    }
+
 }
