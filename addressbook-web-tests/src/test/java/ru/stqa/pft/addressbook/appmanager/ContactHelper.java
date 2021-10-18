@@ -1,11 +1,8 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import oracle.jrockit.jfr.StringConstantPool;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.ArrayList;
@@ -88,14 +85,19 @@ public class ContactHelper extends HelperBase {
 
     public List<ContactData> getContactList() {
         List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> elements = wd.findElements(By.name("entry"));
-        for (WebElement element : elements) {
-            String lastname = "Cherentaev";
-            String firstname = "Kolya";
-            int id = Integer.parseInt(element.findElement(By.xpath("//td/input")).getAttribute("value"));
+        List<WebElement> listRows = wd.findElements(By.name("entry"));
+
+
+        for (WebElement row : listRows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            String lastname = cells.get(1).getText();
+            String firstname = cells.get(2).getText();
+
+            int id = Integer.parseInt(row.findElement(By.xpath("//td/input")).getAttribute("value"));
             ContactData contact = new ContactData(id, firstname, null, lastname, null, null, null, null, null, null, null, null);
             contacts.add(contact);
         }
+
         return contacts;
     }
 }
