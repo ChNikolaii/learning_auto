@@ -14,7 +14,7 @@ import static org.testng.Assert.assertEquals;
 public class ContactModifTest extends TestBase{
     @Test
     public void testContactModif() {
-        app.getNavigationHelper().gotoHomePage();
+        app.goTo().gotoHomePage();
         if (! app.getContactHelper().isThereAContact()) {
             app.getContactHelper().creatContact(new ContactData("Kolya", "Sergeevich", "Cherentaev", "nikolaii", "hello", "world", "Balakhna city", "16", "123456", "qa", "123-456"));
         }
