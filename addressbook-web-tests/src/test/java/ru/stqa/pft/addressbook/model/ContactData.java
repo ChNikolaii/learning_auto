@@ -16,6 +16,18 @@ public class ContactData {
     public  String workPhone;
     public  String fax;
 
+    public String getAllPhones() {
+        return allPhones;
+    }
+
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
+
+    public  String allPhones;
+
+
 
     public int getId() {
         return id;
