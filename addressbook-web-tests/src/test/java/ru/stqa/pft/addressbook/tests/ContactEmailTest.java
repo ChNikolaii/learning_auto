@@ -28,9 +28,15 @@ public class ContactEmailTest extends TestBase {
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
-        assertThat(contact.getAllEmail(), equalTo(contactInfoFromEditForm.getAllEmail()));
+        assertThat(contact.getAllEmail(), equalTo(mergeAllEmail (contactInfoFromEditForm)));
 
     }
+    private String mergeAllEmail (ContactData contact) {
+        return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
+                .stream().filter((s) -> ! s.equals(""))
+                .collect(Collectors.joining("\n"));
+    }
+
 
 
 }
