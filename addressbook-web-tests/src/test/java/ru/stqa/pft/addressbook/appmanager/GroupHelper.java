@@ -57,7 +57,7 @@ public class GroupHelper extends HelperBase {
 
     public void creat(GroupData group) {
         initGroupCreation();
-        fillGroupForm(new GroupData().withName("test2").withFooter("test3").withHeader("test4"));
+        fillGroupForm(group);
         submitGroupCreation();
         returnGroupPage();
     }
