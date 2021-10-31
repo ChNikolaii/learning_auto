@@ -34,7 +34,7 @@ public class ContactCreationTest extends TestBase {
                 List<ContactData> contacts = (List<ContactData>) xstream.fromXML(xml);
                 return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
             }
-            
+
         }
 
 
