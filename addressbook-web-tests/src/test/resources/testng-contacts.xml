@@ -7,8 +7,8 @@
             <class name="ru.stqa.pft.addressbook.tests.ContactModificatedTest"/>
             <class name="ru.stqa.pft.addressbook.tests.ContactDeletedTest"/>
             <class name="ru.stqa.pft.addressbook.tests.ContactPhoneTest"/>
-            <class name="ru.stqa.pft.addressbook.tests.ContactEmailTest"/>
             <class name="ru.stqa.pft.addressbook.tests.ContactAddressTest"/>
+            <class name="ru.stqa.pft.addressbook.tests.ContactEmailTest"/>
         </classes>
     </test>
 </suite>
