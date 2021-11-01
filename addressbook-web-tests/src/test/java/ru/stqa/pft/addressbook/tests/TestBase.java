@@ -1,11 +1,14 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.openqa.selenium.remote.BrowserType;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.logging.Logger;
 
 import static org.openqa.selenium.remote.BrowserType.*;
 
@@ -27,4 +30,5 @@ public class TestBase {
     public ApplicationManager getApp() {
         return app;
     }
+
 }

@@ -22,10 +22,10 @@ task testGroups(type: Test) {
         suites 'src/test/resources/testng-groups.xml'
     }
     if (project.hasProperty('browser')) {
-        SystemProperties ('browser', "${browser}")
+        systemProperty 'browser', "${browser}"
     }
     if (project.hasProperty('target')) {
-        SystemProperties ('target', "${target}")
+        systemProperty 'target', "${target}"
     }
 }
 task testContacts(type: Test) {
@@ -33,9 +33,9 @@ task testContacts(type: Test) {
         suites 'src/test/resources/testng-contacts.xml'
     }
     if (project.hasProperty('browser')) {
-        SystemProperties ('browser', "${browser}")
+        systemProperty 'browser', "${browser}"
     }
     if (project.hasProperty('target')) {
-        SystemProperties ('target', "${target}")
+        systemProperty 'target', "${target}"
     }
 }
