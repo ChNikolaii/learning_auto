@@ -19,7 +19,8 @@ public class ContactModificatedTest extends TestBase{
                     .withFirstname("Kolya").withMiddlename("Sergeevich")
                     .withLastname("Cherentaev").withNickname("nikolaii").withCompany("world")
                     .withTitle("hello").withAddress("Balakhna city").withHomePhone("16")
-                    .withMobilePhone("123456").withWorkPhone("qa").withFax("123-456"));
+                    .withMobilePhone("123456").withWorkPhone("qa").withFax("123-456").withEmail("email")
+                    .withEmail2("email2").withEmail3("email3"));
         }
 
     }
@@ -28,7 +29,11 @@ public class ContactModificatedTest extends TestBase{
 
         Contacts before = app.db().contacts();
         ContactData modifiedContact = before.iterator().next();
-        ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Kolya").withMiddlename("Sergeevich").withLastname("Cherentaev").withNickname("nikolaii").withCompany("world").withTitle("hello").withAddress("Balakhna city").withHomePhone("16").withMobilePhone("123456").withWorkPhone("qa").withFax("123-456");
+        ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Kolya")
+                .withMiddlename("Sergeevich").withLastname("Cherentaev").withNickname("nikolaii")
+                .withCompany("world").withTitle("hello").withAddress("Balakhna city").withHomePhone("16")
+                .withMobilePhone("123456").withWorkPhone("qa").withFax("123-456").withEmail("email")
+                .withEmail2("email2").withEmail3("email3");
         app.goTo().homePage();
         app.contact().modify(contact);
         Contacts after = app.db().contacts();

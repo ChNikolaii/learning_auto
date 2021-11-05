@@ -65,10 +65,11 @@ public class ContactDataGeneration {
         System.out.println(new File(".").getAbsolutePath());
         try (Writer writer = new FileWriter(file)) {
             for (ContactData contact : contacts) {
-                writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;\n", contact.getFirstname(),
+                writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname(),
                         contact.getMiddlename(), contact.getLastname(), contact.getNickname(),
                         contact.getCompany(), contact.getTitle(), contact.getAddress(),
-                        contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(), contact.getFax()));
+                        contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(), contact.getFax(),
+                        contact.getEmail(), contact.getEmail2(), contact.getEmail3()));
         }
         }
     }
@@ -81,7 +82,8 @@ public class ContactDataGeneration {
                     .withNickname(String.format("nickname %s", i)).withCompany(String.format("company %s", i))
                     .withTitle(String.format("title %s", i)).withAddress(String.format("address %s", i))
                     .withHomePhone(String.format("home %s", i)).withMobilePhone(String.format("mobile %s",i))
-                    .withWorkPhone(String.format("work %s", i)).withFax(String.format("fax %s", i)));
+                    .withWorkPhone(String.format("work %s", i)).withFax(String.format("fax %s", i)).
+                    withEmail(String.format("email %s", i)).withEmail2(String.format("email2 %s", i)).withEmail3(String.format("email3 %s", i)));
         }
         return contacts;
     }

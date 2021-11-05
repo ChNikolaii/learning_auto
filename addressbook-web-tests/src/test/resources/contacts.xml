@@ -11,6 +11,9 @@
     <mobilePhone>mobile 0</mobilePhone>
     <workPhone>work 0</workPhone>
     <fax>fax 0</fax>
+    <email>email 0</email>
+    <email2>email2 0</email2>
+    <email3>email3 0</email3>
   </contact>
   <contact>
     <firstname>firstname 1</firstname>
@@ -24,6 +27,9 @@
     <mobilePhone>mobile 1</mobilePhone>
     <workPhone>work 1</workPhone>
     <fax>fax 1</fax>
+    <email>email 1</email>
+    <email2>email2 1</email2>
+    <email3>email3 1</email3>
   </contact>
   <contact>
     <firstname>firstname 2</firstname>
@@ -37,5 +43,8 @@
     <mobilePhone>mobile 2</mobilePhone>
     <workPhone>work 2</workPhone>
     <fax>fax 2</fax>
+    <email>email 2</email>
+    <email2>email2 2</email2>
+    <email3>email3 2</email3>
   </contact>
 </list>
