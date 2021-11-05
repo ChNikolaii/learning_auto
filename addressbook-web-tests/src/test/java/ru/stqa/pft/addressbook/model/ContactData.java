@@ -2,37 +2,68 @@ package ru.stqa.pft.addressbook.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
-
 @XStreamAlias("contact")
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
     @XStreamOmitField
+    @Id
+    @Column(name = "id")
     public int id = Integer.MAX_VALUE;
+    @Column(name = "firstname")
     public  String firstname;
+    @Column(name = "middlename")
     public  String middlename;
+    @Column(name = "lastname")
     public  String lastname;
+    @Column(name = "nickname")
     public  String nickname;
+    @Column(name = "title")
     public  String title;
+    @Column(name = "company")
     public  String company;
+    @Column(name = "address")
+    @Type(type = "text")
     public  String address;
+    @Column(name = "home")
+    @Type(type = "text")
     public  String homePhone;
+    @Column(name = "mobile")
+    @Type(type = "text")
     public  String mobilePhone;
+    @Column(name = "work")
+    @Type(type = "text")
     public  String workPhone;
+    @Transient
+    public  String allPhones;
+    @Column(name = "fax")
+    @Type(type = "text")
     public  String fax;
+    @Column(name = "email")
+    @Type(type = "text")
     public String email;
+    @Column(name = "email2")
+    @Type(type = "text")
     public String email2;
+    @Column(name = "email3")
+    @Type(type = "text")
     public String email3;
+    @Transient
     public String allEmail;
-    public File photo;
+    @Transient
+    public String photo;
 
     public File getPhoto() {
-        return photo;
+        return new File(photo);
     }
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo;
+        this.photo = photo.getPath();
         return this;
     }
 
@@ -83,7 +114,7 @@ public class ContactData {
         return this;
     }
 
-    public  String allPhones;
+
 
 
 
@@ -210,11 +241,11 @@ public class ContactData {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ContactData that = (ContactData) o;
-        return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname);
+        return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(middlename, that.middlename) && Objects.equals(lastname, that.lastname) && Objects.equals(nickname, that.nickname) && Objects.equals(title, that.title) && Objects.equals(company, that.company) && Objects.equals(address, that.address) && Objects.equals(homePhone, that.homePhone) && Objects.equals(mobilePhone, that.mobilePhone) && Objects.equals(workPhone, that.workPhone) && Objects.equals(fax, that.fax) && Objects.equals(email, that.email) && Objects.equals(email2, that.email2) && Objects.equals(email3, that.email3);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstname, lastname);
+        return Objects.hash(id, firstname, middlename, lastname, nickname, title, company, address, homePhone, mobilePhone, workPhone, fax, email, email2, email3);
     }
 }
