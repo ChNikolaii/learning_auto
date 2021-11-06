@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -40,11 +41,12 @@ public class ContactCreationTest extends TestBase {
 
     @Test(dataProvider = "validContacts")
     public void testContactCreation(ContactData contact) {
+        Groups groups = app.db().groups();
         app.goTo().homePage();
         Contacts before = app.db().contacts();
         File photo = new File("src/test/resources/image.png");
 
-        app.contact().creat(contact);
+        app.contact().creat(contact.inGroup(groups.iterator().next()));
        Contacts after = app.db().contacts();
         assertThat(after.size(), equalTo(before.size() + 1));
 
