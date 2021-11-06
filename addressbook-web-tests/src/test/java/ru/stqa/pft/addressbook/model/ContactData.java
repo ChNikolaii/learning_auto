@@ -82,6 +82,10 @@ public class ContactData {
         groups.add(group);
         return this;
     }
+    private Object readResolve() {
+        groups = new HashSet<>();
+        return this;
+    }
 
         public String getEmail2() {
         return email2;
