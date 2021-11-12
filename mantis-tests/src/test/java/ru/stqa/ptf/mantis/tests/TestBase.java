@@ -2,7 +2,6 @@ package ru.stqa.ptf.mantis.tests;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
 import ru.stqa.ptf.mantis.appmanager.ApplicationManager;
 
 import java.io.IOException;
