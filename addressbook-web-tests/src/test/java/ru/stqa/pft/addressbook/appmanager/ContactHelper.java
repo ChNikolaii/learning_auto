@@ -63,6 +63,19 @@ public class ContactHelper extends HelperBase {
         goToHomePage();
     }
 
+    public void removeContactFromGroup(ContactData contact, GroupData group) {
+        selectDisplayGroup(group.getName());
+        selectContactById(contact.getId());
+        removeFromGroup(group.getName());
+    }
+
+    public void selectDisplayGroup(String name) {
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText(name);
+    }
+    private void removeFromGroup(String name) {
+        click(By.name("remove"));
+    }
+
     public void deleteFromGroup(ContactData contact, GroupData group) {
         sortContactFromGroup(group.getId());
         selectContactById(contact.getId());

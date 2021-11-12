@@ -7,6 +7,8 @@ import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
+import java.util.stream.Collectors;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -24,7 +26,7 @@ public class ContactAddToGroupTests extends TestBase{
         }
         if (app.db().groups().size() == 0) {
             app.goTo().groupPage();
-            app.group().creat(new GroupData().withName("test1"));
+            app.group().creat(new GroupData().withName("test2"));
         }
     }
 
@@ -34,8 +36,16 @@ public class ContactAddToGroupTests extends TestBase{
         Groups beforeGroups = app.db().groups();
         ContactData selectedContact = beforeContact.iterator().next();
         GroupData selectedGroup = beforeGroups.iterator().next();
+        app.goTo().homePage();
+        if (!selectedContact.getGroups().isEmpty() && selectedContact.getGroups().contains(selectedGroup)) {
+            app.contact().removeContactFromGroup(selectedContact, selectedGroup);
+            assertThat(selectedContact.getGroups().without(selectedGroup), equalTo(app.db().contacts().stream().
+                    filter((c) -> c.getId() == selectedContact.getId()).collect(Collectors.toList()).get(0).getGroups()));
+            app.goTo().homePage();
+        }
+        app.contact().selectDisplayGroup("[all]");
         app.contact().addToGroup(selectedContact,selectedGroup);
-        Contacts afterContact = app.db().contacts();
-        assertThat(afterContact.iterator().next().getGroups(), equalTo(beforeContact.iterator().next().getGroups().withAdded(selectedGroup)));
+        assertThat(selectedContact.getGroups().withAdded(selectedGroup), equalTo(app.db().contacts().stream().
+                filter((c) -> c.getId() == selectedContact.getId()).collect(Collectors.toList()).get(0).getGroups()));
     }
 }
