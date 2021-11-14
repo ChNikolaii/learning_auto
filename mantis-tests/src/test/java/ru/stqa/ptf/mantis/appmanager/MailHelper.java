@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import static java.lang.System.currentTimeMillis;
 
 public class MailHelper {
-    private final ApplicationManager app;
+    private  ApplicationManager app;
     private final Wiser wiser;
 
     public MailHelper(ApplicationManager app) {
@@ -50,8 +50,6 @@ public class MailHelper {
     }
 
     public void start() {
-        int port = 1100;
-        wiser.setPort(port);
         wiser.start();
     }
 
