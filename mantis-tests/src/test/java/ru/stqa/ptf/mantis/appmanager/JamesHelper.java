@@ -24,6 +24,7 @@ public class JamesHelper {
     private Session mailSession;
     private Store store;
     private String mailserver;
+    private String user;
 
     public JamesHelper(ApplicationManager app) {
         this.app = app;
@@ -39,10 +40,11 @@ public class JamesHelper {
         return result.trim().equals("User " + name + " exist");
     }
 
-    public void createUser(String name, String passwd) {
+
+    public void createUser(String user, String passwd) {
         initTelnetSession();
-        write("adduser " + name + " " + passwd);
-        String result = readUntil("User " + name + " added");
+        write("adduser " + user + " " + passwd);
+        String result = readUntil("User " + user + " added");
         closeTelnetSession();
     }
 
@@ -117,7 +119,7 @@ public class JamesHelper {
     }
 
     public void drainEmail(String username, String password) throws MessagingException {
-        initTelnetSession();
+        //initTelnetSession();
         Folder inbox = openInbox(username, password);
         for (Message message : inbox.getMessages()) {
             message.setFlag(Flags.Flag.DELETED, true);
@@ -140,7 +142,7 @@ public class JamesHelper {
     }
 
     public List<MailMessage> waitForMail(String username, String password, long timeout) throws MessagingException {
-        //  initTelnetSession();
+        initTelnetSession();
         long now = currentTimeMillis();
         while (currentTimeMillis() < now + timeout) {
             List<MailMessage> allMail = getAllMail(username, password);
@@ -148,7 +150,7 @@ public class JamesHelper {
                 return allMail;
             }
             try {
-                Thread.sleep(1000);
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

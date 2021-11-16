@@ -54,7 +54,7 @@ public class RegistrationHelper extends HelperBase {
     }
 
     public void resetPassword() {
-        click(cssSelector("input[value='Reset Password']"));
+        click(cssSelector("#manage-user-reset-form > fieldset > span > input"));
     }
 }
 
