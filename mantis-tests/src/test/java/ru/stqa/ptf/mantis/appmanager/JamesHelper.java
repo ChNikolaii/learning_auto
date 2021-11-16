@@ -2,7 +2,6 @@ package ru.stqa.ptf.mantis.appmanager;
 
 import org.apache.commons.net.telnet.TelnetClient;
 import ru.stqa.ptf.mantis.model.MailMessage;
-import ru.stqa.ptf.mantis.model.UserData;
 
 import javax.mail.*;
 import java.io.IOException;
@@ -16,13 +15,13 @@ import static java.util.stream.Collectors.toList;
 
 public class JamesHelper {
 
-    private final ApplicationManager app;
+    private ApplicationManager app;
 
-    private final TelnetClient telnet;
+    private TelnetClient telnet;
     private InputStream in;
     private PrintStream out;
 
-    private final Session mailSession;
+    private Session mailSession;
     private Store store;
     private String mailserver;
 
@@ -40,10 +39,10 @@ public class JamesHelper {
         return result.trim().equals("User " + name + " exist");
     }
 
-    public void createUser(UserData user) {
+    public void createUser(String name, String passwd) {
         initTelnetSession();
-        write("adduser " + user.getLogin() + " " + user.getPassword());
-        String result = readUntil("User " + user.getLogin() + " added");
+        write("adduser " + name + " " + passwd);
+        String result = readUntil("User " + name + " added");
         closeTelnetSession();
     }
 
@@ -141,7 +140,7 @@ public class JamesHelper {
     }
 
     public List<MailMessage> waitForMail(String username, String password, long timeout) throws MessagingException {
-        initTelnetSession();
+        //  initTelnetSession();
         long now = currentTimeMillis();
         while (currentTimeMillis() < now + timeout) {
             List<MailMessage> allMail = getAllMail(username, password);

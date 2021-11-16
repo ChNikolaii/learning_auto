@@ -17,6 +17,7 @@ dependencies {
     implementation 'ru.lanwen.verbalregex:java-verbal-expressions:1.6'
     implementation 'org.hibernate:hibernate-core:5.4.24.Final'
     implementation 'mysql:mysql-connector-java:8.0.22'
+    implementation 'ch.qos.logback:logback-classic:1.2.3'
 
 }
 
