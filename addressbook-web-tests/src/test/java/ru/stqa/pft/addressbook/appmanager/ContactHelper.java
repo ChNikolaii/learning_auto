@@ -70,9 +70,9 @@ public class ContactHelper extends HelperBase {
     }
 
     public void selectDisplayGroup(String name) {
-        new Select(wd.findElement(By.name("group"))).selectByVisibleText(name);
+       new Select(wd.findElement(By.name("group"))).selectByVisibleText(name);
     }
-    private void removeFromGroup(String name) {
+    public void removeFromGroup(String name) {
         click(By.name("remove"));
     }
 
@@ -82,7 +82,7 @@ public class ContactHelper extends HelperBase {
         confirmRemoving();
         goToHomePage();
     }
-    private void selectGroupById(int id) {
+    public void selectGroupById(int id) {
 
         click(By.cssSelector("select[name=\"to_group\"] > option[value='" + id + "']"));
     }
@@ -208,4 +208,6 @@ public class ContactHelper extends HelperBase {
         List<WebElement> cells = row.findElements(By.tagName("td"));
         cells.get(7).findElement(By.tagName("a")).click();
     }
+
+
 }

@@ -42,19 +42,33 @@ public class ContactDeletionFromGroupTests extends TestBase {
     public void testContactDeletingFromGroup() {
         Contacts beforeContact = app.db().contacts();
         Groups beforeGroups = app.db().groups();
-        ContactData selectedContact = beforeContact.iterator().next();
+        if (beforeGroups.size() == 0) {
+            app.goTo().groupPage();
+            app.group().creat(new GroupData().withName("test2"));
+            beforeGroups = app.db().groups();
+        }
         GroupData selectedGroup = beforeGroups.iterator().next();
         app.goTo().homePage();
-        if (selectedContact.getGroups().isEmpty() || !selectedContact.getGroups().contains(selectedGroup)) {
-            app.contact().selectDisplayGroup("[all]");
-            app.contact().addToGroup(selectedContact, selectedGroup);
-            assertThat(selectedContact.getGroups().withAdded(selectedGroup), equalTo(app.db().contacts().stream().
-                    filter((c) -> c.getId() == selectedContact.getId()).collect(Collectors.toList()).get(0).getGroups()));
+        app.contact().sortContactFromGroup(selectedGroup.getId());
+        app.goTo().homePage();
+        if (selectedGroup.getContacts().size() == 0) {
             app.goTo().homePage();
+            if (app.contact().getContactCount() == 0){
+                app.contact().creat(new ContactData().withFirstname("Kolya")
+                        .withMiddlename("Sergeevich").withLastname("Cherentaev").withNickname("nikolaii")
+                        .withCompany("world").withTitle("hello").withAddress("Balakhna city").withHomePhone("16")
+                        .withMobilePhone("123456").withWorkPhone("qa").withFax("123-456").withEmail("email")
+                        .withEmail2("email2").withEmail3("email3"));
+            }
+            app.goTo().homePage();
+            ContactData selectedContact = beforeContact.iterator().next();
+            app.contact().addToGroup(selectedContact, selectedGroup);
         }
+        app.goTo().homePage();
+        ContactData selectedContact = beforeContact.iterator().next();
+        app.contact().selectGroupById(selectedGroup.getId());
         app.contact().deleteFromGroup(selectedContact, selectedGroup);
         app.goTo().homePage();
-        app.contact().selectDisplayGroup("[all]");
         assertThat(selectedContact.getGroups().without(selectedGroup), equalTo(app.db().contacts().stream().
                 filter((c) -> c.getId() == selectedContact.getId()).collect(Collectors.toList()).get(0).getGroups()));
 

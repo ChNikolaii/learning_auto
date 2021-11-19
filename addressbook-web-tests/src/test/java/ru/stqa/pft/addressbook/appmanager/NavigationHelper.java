@@ -2,7 +2,6 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class NavigationHelper extends HelperBase {
 
@@ -15,5 +14,11 @@ public class NavigationHelper extends HelperBase {
     }
     public void homePage() {
         click(By.linkText("home"));
+    }
+
+    public void homePageSelectGroup() {
+        homePage();
+        click(By.cssSelector("select[name='group']"));
+
     }
 }

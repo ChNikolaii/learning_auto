@@ -49,7 +49,7 @@ public class GroupData {
         this.footer = footer;
         return this;
     }
-    @ManyToMany(mappedBy = "groups")
+    @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)
     private Set<ContactData> contacts = new HashSet<>();
 
     public Contacts getContacts() {
