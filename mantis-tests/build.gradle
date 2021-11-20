@@ -18,7 +18,8 @@ dependencies {
     implementation 'org.hibernate:hibernate-core:5.4.24.Final'
     implementation 'mysql:mysql-connector-java:8.0.22'
     implementation 'ch.qos.logback:logback-classic:1.2.3'
-
+    implementation 'biz.futureware.mantis:mantis-axis-soap-client:1.2.19'
+    implementation 'com.google.code.gson:gson:2.8.5'
 }
 
 //test {
