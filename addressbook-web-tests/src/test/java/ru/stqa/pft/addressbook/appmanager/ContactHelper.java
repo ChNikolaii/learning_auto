@@ -8,6 +8,7 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.List;
 
@@ -21,6 +22,9 @@ public class ContactHelper extends HelperBase {
 
 
     public void returnHomePage() {
+        if (isElementPresent(By.id("maintable"))) {
+            return;
+        }
         click(By.linkText("home"));
     }
 
@@ -64,13 +68,13 @@ public class ContactHelper extends HelperBase {
     }
 
     public void removeContactFromGroup(ContactData contact, GroupData group) {
-        selectDisplayGroup(group.getName());
+        selectGroupList(group);
         selectContactById(contact.getId());
         removeFromGroup(group.getName());
     }
 
-    public void selectDisplayGroup(String name) {
-       new Select(wd.findElement(By.name("group"))).selectByVisibleText(name);
+    public void selectGroupList(GroupData group) {
+        new Select(wd.findElement(By.name("group"))).selectByValue(String.valueOf(group.getId()));;
     }
     public void removeFromGroup(String name) {
         click(By.name("remove"));
@@ -81,6 +85,20 @@ public class ContactHelper extends HelperBase {
         selectContactById(contact.getId());
         confirmRemoving();
         goToHomePage();
+    }
+    public void addInGroup(ContactData contact, GroupData group) {
+        selectContactById(contact.getId());
+        new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(group.getId()));
+        click(By.xpath("(//input[@name='add'])"));
+    }
+    public void removeInGroup(ContactData contact, GroupData group) {
+        selectContactById(contact.getId());
+        click(By.xpath("(//input[@name='remove'])"));
+    }
+    public Groups findGroupForAdding(ContactData contact, Groups groups) {
+        Groups groupsInContact = contact.getGroups();
+        groups.removeAll(groupsInContact);
+        return groups;
     }
     public void selectGroupById(int id) {
 
@@ -113,7 +131,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void selectContactById(int id) {
-        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+        wd.findElement(By.cssSelector(String.format("input[value='%s']", id))).click();
     }
 
     public void deletedContact() {
