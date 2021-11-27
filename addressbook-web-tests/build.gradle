@@ -1,8 +1,8 @@
 apply plugin: 'java'
+
 test {
     useTestNG()
 }
-
 
 repositories {
     mavenCentral()
@@ -31,6 +31,17 @@ task testGroups(type: Test) {
 task testContacts(type: Test) {
     useTestNG {
         suites 'src/test/resources/testng-contacts.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+}
+task testAllTest(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-allTest.xml'
     }
     if (project.hasProperty('browser')) {
         systemProperty 'browser', "${browser}"
