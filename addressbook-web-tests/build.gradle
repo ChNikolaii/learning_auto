@@ -1,5 +1,3 @@
-import com.sun.javafx.runtime.SystemProperties
-
 apply plugin: 'java'
 test {
     useTestNG()
